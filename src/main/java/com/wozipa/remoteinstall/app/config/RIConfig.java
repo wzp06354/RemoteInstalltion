@@ -5,8 +5,8 @@ package com.wozipa.remoteinstall.app.config;
  */
 public class RIConfig {
 
-    public static final int RI_APP_WIDTH=700;
-    public static final int RI_APP_HEIGH=500;
+    public static final int RI_APP_WIDTH=800;
+    public static final int RI_APP_HEIGH=600;
 
 
 }

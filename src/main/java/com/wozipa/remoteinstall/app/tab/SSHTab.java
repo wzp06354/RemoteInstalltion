@@ -1,4 +1,4 @@
-package com.wozipa.remoteinstall.tab;
+package com.wozipa.remoteinstall.app.tab;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;

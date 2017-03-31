@@ -4,28 +4,25 @@ import com.wozipa.remoteinstall.app.actions.AboutAction;
 import com.wozipa.remoteinstall.app.actions.ConfigAction;
 import com.wozipa.remoteinstall.app.actions.NewAction;
 import com.wozipa.remoteinstall.app.config.RIConfig;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.wozipa.remoteinstall.app.tab.IPReptileTabbar;
+import org.apache.log4j.Logger;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.*;
 
 /**
  * Created by wozipa on 2017/3/21.
  */
 public class RemoteInstalltionWindow extends ApplicationWindow {
 
-    private static final Log LOG=LogFactory.getLog(RemoteInstalltionWindow.class);
+    private static final Logger LOGGER= Logger.getLogger(RemoteInstalltionWindow.class);
 
+    private TabFolder content;
     private NewAction newAction=null;
 
     public static void main(String[] args)
@@ -40,7 +37,7 @@ public class RemoteInstalltionWindow extends ApplicationWindow {
     {
         super(null);
         //
-
+        newAction=new NewAction();
         //
         this.addMenuBar();
         this.addToolBar(SWT.FILL);
@@ -58,8 +55,8 @@ public class RemoteInstalltionWindow extends ApplicationWindow {
     @Override
     protected Control createContents(Composite parent) {
         parent.setBackground(new Color(null,new RGB(255,255,255)));
-        CTabFolder content=new CTabFolder(parent,SWT.NONE);
-        content.dispose();
+        this.content=new TabFolder(parent,SWT.NONE);
+        IPReptileTabbar ipReptileTabbar=new IPReptileTabbar(content,SWT.NONE);
         return parent;
     }
 
@@ -81,7 +78,6 @@ public class RemoteInstalltionWindow extends ApplicationWindow {
         menuManager.add(configMenu);
         menuManager.add(helpMenu);
         //create the button list menu on the menu bar
-        newAction=new NewAction();
         fileMenu.add(newAction);
         //create the button list menu on the config bar
         ConfigAction configAction=new ConfigAction();
